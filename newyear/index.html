@@ -8,24 +8,34 @@
     /* Background styling */
     body {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-direction: column; /* Allows stacking of elements vertically */
+      justify-content: space-between; /* Space between elements */
+      align-items: center; /* Centers items horizontally */
       height: 100vh;
       margin: 0;
-      background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
+      background-image: url('https://raw.githubusercontent.com/Jabul6969/website/refs/heads/main/src/backgroundofthewildwildwest.gif'); /* Add your GIF URL here */
+      background-size: cover; /* Ensures the background covers the entire page */
+      background-repeat: no-repeat; /* Prevents the background from repeating */
+      background-position: center; /* Centers the background */
       color: white;
       font-family: 'Arial', sans-serif;
       overflow: hidden;
       position: relative;
     }
 
+    /* Center wrapper for countdown */
+    .center-wrapper {
+      display: flex;
+      flex: 1; /* Take available space */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      padding: 50px; /* Padding for the countdown container */
+    }
+
     /* Countdown container */
     .countdown-container {
       text-align: center;
-      background: rgba(0, 0, 0, 0.8);
-      padding: 50px;
       border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
       position: relative;
       z-index: 1; /* Ensure the countdown is above the fireworks */
     }
@@ -70,19 +80,19 @@
 
     /* Button styling */
     .redirect-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      background-color: #ff6b6b;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
+      margin: 20px 0; /* Spacing above and below the button */
+      padding: 10px 20px; /* Button padding */
+      font-size: 1rem; /* Button font size */
+      background-color: rgba(255, 255, 255, 0.1); /* Transparent background */
+      color: white; /* Text color */
+      border: none; /* No border */
+      border-radius: 5px; /* Rounded corners */
+      cursor: pointer; /* Pointer cursor on hover */
+      transition: background-color 0.3s; /* Smooth transition for hover effect */
     }
 
     .redirect-button:hover {
-      background-color: #ff4d4d;
+      background-color: rgba(255, 255, 255, 0.3); /* Slightly more opaque on hover */
     }
 
     /* Fireworks canvas */
@@ -100,28 +110,31 @@
 
   <canvas id="fireworksCanvas"></canvas>
 
-  <div class="countdown-container">
-    <h1>New Year Countdown</h1>
-    <div class="countdown" id="countdown">
-      <div>
-        <span id="days">00</span>
-        <div class="label">Days</div>
-      </div>
-      <div>
-        <span id="hours">00</span>
-        <div class="label">Hours</div>
-      </div>
-      <div>
-        <span id="minutes">00</span>
-        <div class="label">Minutes</div>
-      </div>
-      <div>
-        <span id="seconds">00</span>
-        <div class="label">Seconds</div>
+  <div class="center-wrapper">
+    <div class="countdown-container">
+      <h1>New Year Countdown</h1>
+      <div class="countdown" id="countdown">
+        <div>
+          <span id="days">00</span>
+          <div class="label">Days</div>
+        </div>
+        <div>
+          <span id="hours">00</span>
+          <div class="label">Hours</div>
+        </div>
+        <div>
+          <span id="minutes">00</span>
+          <div class="label">Minutes</div>
+        </div>
+        <div>
+          <span id="seconds">00</span>
+          <div class="label">Seconds</div>
+        </div>
       </div>
     </div>
-    <button class="redirect-button" onclick="window.location.href='https://www.example.com';">Go to Another Page</button>
   </div>
+
+  <button class="redirect-button" onclick="window.location.href='https://jingexz01.online';">Christmas Countdown</button>
 
   <script>
     // Fireworks animation
@@ -229,6 +242,5 @@
 
     setInterval(updateCountdown, 1000);
   </script>
-
 </body>
 </html>
