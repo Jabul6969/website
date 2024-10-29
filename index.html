@@ -11,6 +11,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-direction: column; /* Changed to column to center button */
       height: 100vh;
       margin: 0;
       overflow: hidden;
@@ -80,6 +81,23 @@
       background-color: white; 
     }
 
+    /* Button styling */
+    .redirect-button {
+      margin-top: 20px; /* Spacing above the button */
+      padding: 10px 20px; /* Button padding */
+      font-size: 1rem; /* Button font size */
+      background-color: #ff6b6b; /* Button color */
+      color: white; /* Text color */
+      border: none; /* No border */
+      border-radius: 5px; /* Rounded corners */
+      cursor: pointer; /* Pointer cursor on hover */
+      transition: background-color 0.3s; /* Smooth transition for hover effect */
+    }
+
+    .redirect-button:hover {
+      background-color: #ff4d4d; /* Darker shade on hover */
+    }
+
     /* Snowflake falling animation */
     @keyframes fall {
       to {
@@ -116,6 +134,7 @@
         <div class="label">Seconds</div>
       </div>
     </div>
+    <!-- Redirect Button -->
   </div>
 
   <script>
@@ -176,6 +195,6 @@
     setInterval(cycleColors, 1000); // Change color every second
     setInterval(updateCountdown, 1000);
   </script>
-
+<button class="redirect-button" onclick="window.location.href='https://jingexz01.online/newyear';">New Year 2025 Countdown</button>
 </body>
 </html>
