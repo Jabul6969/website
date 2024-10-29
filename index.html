@@ -4,57 +4,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Christmas Countdown</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/Jabul6969/website/refs/heads/main/src/christmasicon.jpg" type="image/jpg">
   <style>
     /* Background styling */
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
     body {
       display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column; /* Changed to column to center button */
+      flex-direction: column; /* Allows stacking of elements vertically */
+      justify-content: space-between; /* Space between elements */
+      align-items: center; /* Centers items horizontally */
       height: 100vh;
       margin: 0;
+      background-image: url('https://raw.githubusercontent.com/Jabul6969/website/refs/heads/main/src/christmasbg.gif'); /* Add your GIF URL here */
+      background-size: cover; /* Ensures the background covers the entire page */
+      background-repeat: no-repeat; /* Prevents the background from repeating */
+      background-position: center; /* Centers the background */
+      color: white;
+      font-family: 'Arial', sans-serif;
       overflow: hidden;
-      background: linear-gradient(to bottom, #b1e4e2, #ffe8e8);
-      font-family: 'Montserrat', sans-serif;
-      color: #333;
+      position: relative;
     }
 
-    /* Snowfall effect */
-    .snowflake {
-      position: fixed;
-      top: -10px;
-      color: white;
-      font-size: 1.2rem;
-      pointer-events: none;
-      animation: fall linear infinite;
+    /* Center wrapper for countdown */
+    .center-wrapper {
+      display: flex;
+      flex: 1; /* Take available space */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      padding: 50px; /* Padding for the countdown container */
     }
 
     /* Countdown container */
     .countdown-container {
       text-align: center;
-      padding: 70px;
-      border-radius: 10px;
+      border-radius: 20px;
+      position: relative;
+      z-index: 1; /* Ensure the countdown is above the fireworks */
+      background: rgba(80, 78, 78, 0.7); /* Matte background with some opacity */
+      padding: 30px; /* Padding inside the countdown container */
     }
 
     h1 {
-      font-size: 3.5rem;
-      color: #e63946;
-      margin-bottom: 10px;
-      text-shadow: 2px 2px #d8a5a5;
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     }
 
-    .greeting {
-      font-size: 1.2rem;
-      margin-top: 20px;
-      margin-bottom: 30px;
-    }
-
-    /* Countdown display */
     .countdown {
       display: flex;
       justify-content: center;
-      gap: 40px;
+      gap: 30px;
     }
 
     .countdown div {
@@ -62,31 +60,33 @@
       flex-direction: column;
       align-items: center;
       font-size: 2.5rem;
-      color: rgb(255, 87, 34); /* Initial color */
-      width: 120px; /* Increased width */
-      height: 120px; /* Increased height */
-      padding: 50px; /* Added padding */
-      background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent */
-      border-radius: 8px;
+      padding: 20px;
+      background: rgba(80, 78, 78, 0.7);
+      border-radius: 15px;
+      transition: background 0.3s;
+    }
+
+    .countdown div:hover {
+      background: rgba(255, 255, 255, 0.3);
     }
 
     .countdown span {
-      font-size: 3rem; /* Increased font size for numbers */
-      margin-bottom: 15px; /* Added space between numbers and labels */
-      transition: color 0.5s ease; /* Smooth transition for color change */
+      font-size: 3rem;
+      color: #FFFFFF; /* Bright color for the numbers */
+      transition: color 0.5s;
     }
 
     .label {
-      font-size: 1.2rem; /* Adjusted font size for labels */
-      background-color: white; 
+      font-size: 1.2rem;
+      color: #fff;
     }
 
     /* Button styling */
     .redirect-button {
-      margin-top: 20px; /* Spacing above the button */
+      margin: 20px 0; /* Spacing above and below the button */
       padding: 10px 20px; /* Button padding */
       font-size: 1rem; /* Button font size */
-      background-color: #ff6b6b; /* Button color */
+      background-color: rgba(80, 78, 78, 0.7); /* Transparent background */
       color: white; /* Text color */
       border: none; /* No border */
       border-radius: 5px; /* Rounded corners */
@@ -95,106 +95,69 @@
     }
 
     .redirect-button:hover {
-      background-color: #ff4d4d; /* Darker shade on hover */
+      background-color: rgba(80, 78, 78, 0.7); /* Slightly more opaque on hover */
     }
 
-    /* Snowflake falling animation */
-    @keyframes fall {
-      to {
-        transform: translateY(100vh) rotate(360deg);
-      }
+    /* Fireworks canvas */
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* Prevents mouse events from interfering */
     }
   </style>
 </head>
 <body>
 
-  <!-- Snowflakes -->
-  <div class="snowflake">❄</div>
-  <div class="snowflake">❅</div>
-  <div class="snowflake">❆</div>
-  
-  <div class="countdown-container">
-    <h1>Christmas Countdown</h1>
-    <div class="greeting">Counting down to the most wonderful time of the year!</div>
-    <div class="countdown" id="countdown">
-      <div>
-        <span id="days">00</span>
-        <div class="label">Days</div>
-      </div>
-      <div>
-        <span id="hours">00</span>
-        <div class="label">Hours</div>
-      </div>
-      <div>
-        <span id="minutes">00</span>
-        <div class="label">Minutes</div>
-      </div>
-      <div>
-        <span id="seconds">00</span>
-        <div class="label">Seconds</div>
+  <canvas id="fireworksCanvas"></canvas>
+
+  <div class="center-wrapper">
+    <div class="countdown-container">
+      <h1>Christmas Countdown</h1>
+      <div class="countdown" id="countdown">
+        <div>
+          <span id="days">00</span>
+          <div class="label">Days</div>
+        </div>
+        <div>
+          <span id="hours">00</span>
+          <div class="label">Hours</div>
+        </div>
+        <div>
+          <span id="minutes">00</span>
+          <div class="label">Minutes</div>
+        </div>
+        <div>
+          <span id="seconds">00</span>
+          <div class="label">Seconds</div>
+        </div>
       </div>
     </div>
-    <!-- Redirect Button -->
   </div>
 
+  <button class="redirect-button" onclick="window.location.href='https://jingexz01.online';">Christmas Countdown</button>
+
   <script>
-    // Snowfall effect
-    function createSnowflake() {
-      const snowflake = document.createElement("div");
-      snowflake.classList.add("snowflake");
-      snowflake.textContent = '❄';
-      snowflake.style.left = Math.random() * window.innerWidth + "px";
-      snowflake.style.animationDuration = Math.random() * 3 + 2 + "s";
-      snowflake.style.fontSize = Math.random() * 10 + 10 + "px";
-      document.body.appendChild(snowflake);
-
-      setTimeout(() => {
-        snowflake.remove();
-      }, 5000);
-    }
-    setInterval(createSnowflake, 200);
-
     // Countdown logic
     function updateCountdown() {
-      const christmasDate = new Date('December 25, 2024 00:00:00').getTime();
+      const newYearDate = new Date('December 25, 2024 00:00:00').getTime();
       const now = new Date().getTime();
-      const timeLeft = christmasDate - now;
+      const timeLeft = newYearDate - now;
 
       const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
       const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-      document.getElementById('days').innerText = days;
-      document.getElementById('hours').innerText = hours;
-      document.getElementById('minutes').innerText = minutes;
-      document.getElementById('seconds').innerText = seconds;
+      document.getElementById('days').innerText = days < 10 ? '0' + days : days;
+      document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
+      document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+      document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
     }
 
-    // Color cycling for countdown numbers
-    const colors = [
-      'rgb(255, 0, 0)',   // Red
-      'rgb(255, 127, 0)', // Orange
-      'rgb(0, 255, 0)',   // Green
-      'rgb(0, 0, 255)',   // Blue
-      'rgb(75, 0, 130)',  // Indigo
-      'rgb(148, 0, 211)'  // Violet
-    ];
-
-    let colorIndex = 0;
-
-    function cycleColors() {
-      const numberElements = document.querySelectorAll('.countdown span');
-      numberElements.forEach((element) => {
-        element.style.color = colors[colorIndex];
-      });
-
-      colorIndex = (colorIndex + 1) % colors.length;
-    }
-
-    setInterval(cycleColors, 1000); // Change color every second
     setInterval(updateCountdown, 1000);
   </script>
-<button class="redirect-button" onclick="window.location.href='https://jingexz01.online/newyear';">New Year 2025 Countdown</button>
 </body>
 </html>
