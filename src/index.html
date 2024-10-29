@@ -22,13 +22,15 @@
     </style>
 </head>
 <body>
-    <img id="balloon" src="https://raw.githubusercontent.com/Jabul6969/website/refs/heads/main/src/areulostbbgurl.gif" alt="404 Not Found" onclick="goBackOrHome();">
+    <img id="balloon" src="https://cdn.dribbble.com/users/469578/screenshots/2597126/404-drib23.gif" alt="404 Not Found" onclick="goBackOrHome();">
 
     <script>
         function goBackOrHome() {
+            // Check if there's history to go back to
             if (window.history.length > 1) {
                 window.history.back();
             } else {
+                // Redirect to the homepage if there's no history
                 window.location.href = '/'; // Change this to your homepage URL
             }
         }
