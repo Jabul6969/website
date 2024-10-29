@@ -27,11 +27,11 @@
     <script>
         function goBackOrHome() {
             // Check if there's history to go back to
-            if (document.referrer && window.history.length > 1) {
+            if (window.history.state !== null || window.history.length > 1) {
                 window.history.back();
             } else {
                 // Redirect to the homepage if there's no history
-                // update 1
+                // update 2
                 window.location.href = 'https://jingexz01.online'; // Change this to your homepage URL
             }
         }
