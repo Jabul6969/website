@@ -26,12 +26,12 @@
 
     <script>
         function goBackOrHome() {
-            // Check if there's history to go back to
-            if (window.history.length > 1) {
+            // Check if there's history to go back to or if the page is the first one opened
+            if (window.history.length > 1 || window.history.state !== null) {
                 window.history.back();
             } else {
                 // Redirect to the homepage if there's no history
-                window.location.href = '/'; // Change this to your homepage URL
+                window.location.href = 'https://jingexz01.online'; // Change this to your homepage URL
             }
         }
     </script>
