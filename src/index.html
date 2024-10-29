@@ -26,8 +26,8 @@
 
     <script>
         function goBackOrHome() {
-            // Check if there's history to go back to or if the page is the first one opened
-            if (window.history.length > 1 || window.history.state !== null) {
+            // Check if there's history to go back to
+            if (document.referrer && window.history.length > 1) {
                 window.history.back();
             } else {
                 // Redirect to the homepage if there's no history
