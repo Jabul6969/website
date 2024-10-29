@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #EAE9E8; /* Optional background color */
+        }
+
+        #balloon {
+            cursor: pointer; /* Changes cursor to pointer on hover */
+            max-width: 80%; /* Optional: limits the size of the balloon */
+            height: auto; /* Maintains aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <img id="balloon" src="https://raw.githubusercontent.com/Jabul6969/website/refs/heads/main/src/areulostbbgurl.gif" alt="404 Not Found" onclick="goBackOrHome();">
+
+    <script>
+        function goBackOrHome() {
+            // Check if there's history to go back to
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                // Redirect to the homepage if there's no history
+                // update 3
+                window.location.href = 'https://jingexz01.online'; // Change this to your homepage URL
+            }
+        }
+    </script>
+</body>
+</html>
