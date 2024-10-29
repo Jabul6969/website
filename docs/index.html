@@ -32,10 +32,8 @@
     /* Countdown container */
     .countdown-container {
       text-align: center;
-      padding: 30px;
+      padding: 70px;
       border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-      background-color: rgba(255, 255, 255, 0.85);
     }
 
     h1 {
@@ -47,38 +45,39 @@
 
     .greeting {
       font-size: 1.2rem;
-      margin-bottom: 20px;
-      color: #6c757d;
+      margin-top: 20px;
+      margin-bottom: 30px;
     }
 
     /* Countdown display */
     .countdown {
       display: flex;
       justify-content: center;
-      gap: 25px;
+      gap: 40px;
     }
 
     .countdown div {
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-size: 3rem;
-      color: #ff5722;
-      width: 100px;
-      padding: 20px;
-      background-color: #ffffff;
+      font-size: 2.5rem;
+      color: rgb(255, 87, 34); /* Initial color */
+      width: 120px; /* Increased width */
+      height: 120px; /* Increased height */
+      padding: 50px; /* Added padding */
+      background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent */
       border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
 
     .countdown span {
-      font-size: 2.5rem;
-      margin-bottom: 8px;
+      font-size: 3rem; /* Increased font size for numbers */
+      margin-bottom: 15px; /* Added space between numbers and labels */
+      transition: color 0.5s ease; /* Smooth transition for color change */
     }
 
     .label {
-      font-size: 1.2rem;
-      color: #555;
+      font-size: 1.2rem; /* Adjusted font size for labels */
+      background-color: white; 
     }
 
     /* Snowflake falling animation */
@@ -152,7 +151,29 @@
       document.getElementById('minutes').innerText = minutes;
       document.getElementById('seconds').innerText = seconds;
     }
-    
+
+    // Color cycling for countdown numbers
+    const colors = [
+      'rgb(255, 0, 0)',   // Red
+      'rgb(255, 127, 0)', // Orange
+      'rgb(0, 255, 0)',   // Green
+      'rgb(0, 0, 255)',   // Blue
+      'rgb(75, 0, 130)',  // Indigo
+      'rgb(148, 0, 211)'  // Violet
+    ];
+
+    let colorIndex = 0;
+
+    function cycleColors() {
+      const numberElements = document.querySelectorAll('.countdown span');
+      numberElements.forEach((element) => {
+        element.style.color = colors[colorIndex];
+      });
+
+      colorIndex = (colorIndex + 1) % colors.length;
+    }
+
+    setInterval(cycleColors, 1000); // Change color every second
     setInterval(updateCountdown, 1000);
   </script>
 
