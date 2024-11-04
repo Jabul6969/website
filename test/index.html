@@ -30,6 +30,7 @@
       cursor: pointer; 
       color: white; 
       text-decoration: none;
+      transition: transform 0.3s ease;
     }
     .navbar-title { 
       color: white; 
@@ -42,7 +43,7 @@
       grid-template-columns: repeat(3, 1fr); 
       gap: 20px; 
       padding: 20px; 
-      background-color: #a9a9a9; 
+      background-color: #b96700; 
     }
     .card { 
       display: flex; 
@@ -67,9 +68,39 @@
       color: #333; 
       margin-bottom: 10px; 
     }
-    .card-image { 
-      width: 80px; 
-      height: 80px; 
+    .card-image-breakfast { 
+      width: 150px; 
+      height: 150px; 
+      border-radius: 8px; 
+      object-fit: cover; 
+    }
+    .card-image-lunch { 
+      width: 200px; 
+      height: 200px; 
+      border-radius: 8px; 
+      object-fit: cover; 
+    }
+    .card-image-dinner { 
+      width: 200px; 
+      height: 200px; 
+      border-radius: 8px; 
+      object-fit: cover; 
+    }
+    .card-image-appetizer { 
+      width: 200px; 
+      height: 250px; 
+      border-radius: 8px; 
+      object-fit: cover; 
+    }
+    .card-image-dessert { 
+      width: 200px; 
+      height: 130px; 
+      border-radius: 8px; 
+      object-fit: cover; 
+    }
+    .card-image-fingerfoods { 
+      width: 200px; 
+      height: 150px; 
       border-radius: 8px; 
       object-fit: cover; 
     }
@@ -78,8 +109,11 @@
       color: #555; 
       margin-top: 10px; 
     }
+    .home-button:hover {
+      transform: scale(1.1);
+    }
     body { 
-      background-color: #a9a9a9; 
+      background-color: #b96700; 
     }
   </style>
 </head>
@@ -96,33 +130,33 @@
   <div class="card-grid">
     <div class="card">
         <p class="card-title">Breakfast</p>
-        <img src="image1.jpg" alt="Breakfast" class="card-image">
-        <p class="card-description">This is a short description.</p>
+        <img src="https://www.kawalingpinoy.com/wp-content/uploads/2024/09/damulag-tapa-730x973.jpg" alt="Breakfast" class="card-image-breakfast">
+        <p class="card-description">Beef Tapa</p>
     </div>
     <div class="card">
         <p class="card-title">Lunch</p>
-        <img src="image2.jpg" alt="Lunch" class="card-image">
-        <p class="card-description">This is a short description.</p>
+        <img src="https://www.unileverfoodsolutions.com.ph/chef-inspiration/food-delivery/10-crowd-favorite-filipino-dishes/jcr:content/parsys/set1/row2/span12/columncontrol_copy_c_1292622576/columnctrl_parsys_2/textimage_copy/image.transform/jpeg-optimized/image.1697455717956.jpg" alt="Lunch" class="card-image-lunch">
+        <p class="card-description">Kare-Kare</p>
     </div>
     <div class="card">
         <p class="card-title">Dinner</p>
-        <img src="image3.jpg" alt="Dinner" class="card-image">
-        <p class="card-description">This is a short description.</p>
+        <img src="https://seriouseats.com/thmb/8NYGTHL4rP4T9oA7n0Luz1yl7JY=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/20210712-pinakbet-vicky-wasik-seriouseats-11-70c57a1f76174d8082b0b132bdfc7640.jpg" alt="Dinner" class="card-image-dinner">
+        <p class="card-description">Pinakbet</p>
     </div>
     <div class="card">
         <p class="card-title">Appetizer</p>
-        <img src="image4.jpg" alt="Appetizer" class="card-image">
-        <p class="card-description">This is a short description.</p>
+        <img src="https://womenchefs.org/wp-content/uploads/2023/10/Filipino-Appetizers.jpg" alt="Appetizer" class="card-image-appetizer">
+        <p class="card-description">Lumpia</p>
     </div>
     <div class="card">
         <p class="card-title">Dessert</p>
-        <img src="image5.jpg" alt="Dessert" class="card-image">
-        <p class="card-description">This is a short description.</p>
+        <img src="https://i0.wp.com/iankewks.com/wp-content/uploads/2024/07/IMG_1524.jpg" alt="Dessert" class="card-image-dessert">
+        <p class="card-description">Halo-Halo</p>
     </div>
     <div class="card">
         <p class="card-title">Finger Foods</p>
-        <img src="image6.jpg" alt="Finger Foods" class="card-image">
-        <p class="card-description">This is a short description.</p>
+        <img src="https://images.deliveryhero.io/image/foodpanda/recipes/calamares-recipe-1.jpg" alt="Finger Foods" class="card-image-fingerfoods">
+        <p class="card-description">Calamares</p>
     </div>
   </div>
 </div>
