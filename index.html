@@ -75,7 +75,19 @@
       font-size: 3rem;
       color: #FFFFFF; /* Bright color for the numbers */
       transition: color 0.5s;
-      animation: popUp 0.5s ease-in-out;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      height: 3rem; /* Match the font size */
+    }
+
+    .countdown span::before {
+      content: attr(data-value);
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100%;
+      animation: slideUp 0.5s ease-in-out forwards;
     }
 
     .label {
@@ -123,6 +135,7 @@
 
       .countdown span {
         font-size: 2rem;
+        height: 2rem; /* Match the font size */
       }
 
       .label {
@@ -135,10 +148,10 @@
       }
     }
 
-    /* Keyframes for pop-up animation */
-    @keyframes popUp {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
+    /* Keyframes for slide-up animation */
+    @keyframes slideUp {
+      0% { top: 100%; }
+      100% { top: 0; }
     }
   </style>
 </head>
@@ -151,19 +164,19 @@
       <h1>Christmas Countdown</h1>
       <div class="countdown" id="countdown">
         <div>
-          <span id="days">00</span>
+          <span id="days" data-value="00">00</span>
           <div class="label">Days</div>
         </div>
         <div>
-          <span id="hours">00</span>
+          <span id="hours" data-value="00">00</span>
           <div class="label">Hours</div>
         </div>
         <div>
-          <span id="minutes">00</span>
+          <span id="minutes" data-value="00">00</span>
           <div class="label">Minutes</div>
         </div>
         <div>
-          <span id="seconds">00</span>
+          <span id="seconds" data-value="00">00</span>
           <div class="label">Seconds</div>
         </div>
       </div>
@@ -172,6 +185,6 @@
 
   <button class="redirect-button" onclick="window.location.href='https://jingexz01.online/newyear';">New Year Countdown</button>
 
-  <script src="src/countdown.js"></script>
+  <script src="countdown.js"></script>
 </body>
 </html>

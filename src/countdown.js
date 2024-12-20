@@ -19,10 +19,11 @@ function updateCountdown() {
     const element = document.getElementById(id);
     const newValue = value < 10 ? '0' + value : value;
     if (element.innerText !== newValue) {
+      element.setAttribute('data-value', newValue);
       element.innerText = newValue;
-      element.style.animation = 'none';
-      element.offsetHeight; /* trigger reflow */
-      element.style.animation = null;
+      element.classList.remove('animate');
+      void element.offsetWidth; // trigger reflow
+      element.classList.add('animate');
     }
   }
   
