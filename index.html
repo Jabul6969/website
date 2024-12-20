@@ -108,6 +108,31 @@
       height: 100%;
       pointer-events: none; /* Prevents mouse events from interfering */
     }
+
+    /* Media queries for responsive design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .countdown div {
+        font-size: 1.5rem;
+        padding: 10px;
+      }
+
+      .countdown span {
+        font-size: 2rem;
+      }
+
+      .label {
+        font-size: 1rem;
+      }
+
+      .redirect-button {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -159,6 +184,19 @@
     }
 
     setInterval(updateCountdown, 1000);
+
+    // Device detection and style adjustment
+    function adjustStylesForDevice() {
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        document.querySelector('body').style.fontSize = '0.8rem';
+      } else {
+        document.querySelector('body').style.fontSize = '1rem';
+      }
+    }
+
+    adjustStylesForDevice();
+    window.addEventListener('resize', adjustStylesForDevice);
   </script>
 </body>
 </html>
