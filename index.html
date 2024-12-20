@@ -75,6 +75,7 @@
       font-size: 3rem;
       color: #FFFFFF; /* Bright color for the numbers */
       transition: color 0.5s;
+      animation: fadeIn 1s ease-in-out;
     }
 
     .label {
@@ -133,6 +134,12 @@
         padding: 8px 16px;
       }
     }
+
+    /* Keyframes for fade-in animation */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
   </style>
 </head>
 <body>
@@ -181,6 +188,13 @@
       document.getElementById('hours').innerText = hours < 10 ? '0' + hours : hours;
       document.getElementById('minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
       document.getElementById('seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+
+      // Trigger animation
+      document.querySelectorAll('.countdown span').forEach(span => {
+        span.style.animation = 'none';
+        span.offsetHeight; /* trigger reflow */
+        span.style.animation = null;
+      });
     }
 
     setInterval(updateCountdown, 1000);
