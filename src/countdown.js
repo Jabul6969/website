@@ -21,23 +21,11 @@ function updateCountdown() {
     const currentValue = element.innerText;
   
     if (currentValue !== newValue) {
-      const currentDigits = currentValue.split('');
-      const newDigits = newValue.split('');
-  
-      newDigits.forEach((digit, index) => {
-        if (currentDigits[index] !== digit) {
-          const span = document.createElement('span');
-          span.className = 'animate';
-          span.setAttribute('data-value', digit);
-          span.innerText = digit;
-          element.appendChild(span);
-  
-          setTimeout(() => {
-            element.innerText = newValue;
-            span.remove();
-          }, 500);
-        }
-      });
+      element.innerText = newValue;
+      element.classList.add('animate');
+      setTimeout(() => {
+        element.classList.remove('animate');
+      }, 500);
     }
   }
   
