@@ -18,12 +18,26 @@ function updateCountdown() {
   function updateElement(id, value) {
     const element = document.getElementById(id);
     const newValue = value < 10 ? '0' + value : value;
-    if (element.innerText !== newValue) {
-      element.setAttribute('data-value', newValue);
-      element.innerText = newValue;
-      element.classList.remove('animate');
-      void element.offsetWidth; // trigger reflow
-      element.classList.add('animate');
+    const currentValue = element.innerText;
+  
+    if (currentValue !== newValue) {
+      const currentDigits = currentValue.split('');
+      const newDigits = newValue.split('');
+  
+      newDigits.forEach((digit, index) => {
+        if (currentDigits[index] !== digit) {
+          const span = document.createElement('span');
+          span.className = 'animate';
+          span.setAttribute('data-value', digit);
+          span.innerText = digit;
+          element.appendChild(span);
+  
+          setTimeout(() => {
+            element.innerText = newValue;
+            span.remove();
+          }, 500);
+        }
+      });
     }
   }
   
